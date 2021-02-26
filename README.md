@@ -1,5 +1,5 @@
 # MilkPotion
-Milk potion for Minegold Network
+Milk potion for Crusade Craft
 
 # Frameworks used
 
