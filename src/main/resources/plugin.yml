@@ -1,7 +1,7 @@
 name: MilkPotion
 version: ${project.version}
 main: es.minegold.milkpotion.MilkPotion
-api-version: 1.16
-authors: [ Teszeo ]
+api-version: 1.13
+authors: [ Teszeo, V1nc3ntWasTaken ]
 description: Milk Splash Potion
-website: https://minegold.es
+website: https://crusade-craft.com
