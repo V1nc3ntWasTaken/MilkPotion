@@ -7,7 +7,6 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PotionSplashEvent;
-import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 public class MilkPotionListener implements Listener {
@@ -21,25 +20,22 @@ public class MilkPotionListener implements Listener {
 
     @EventHandler
     public void onPlayerHitOtherPlayer(PotionSplashEvent e) {
-        if (e.getEntity().getItem().hasItemMeta() &&
-                e.getEntity().getItem().getItemMeta().getDisplayName().equalsIgnoreCase(this.COLORED_POTION_NAME)) {
+        if (e.getEntity().getItem().hasItemMeta() && e.getEntity().getItem().getItemMeta().getDisplayName().equalsIgnoreCase(this.COLORED_POTION_NAME)) {
             e.setCancelled(true);
             for (LivingEntity en: e.getAffectedEntities()) {
-                for (PotionEffect effect: en.getActivePotionEffects()) {
-                    en.removePotionEffect(PotionEffectType.BAD_OMEN);
-                    en.removePotionEffect(PotionEffectType.BLINDNESS);
-                    en.removePotionEffect(PotionEffectType.CONFUSION);
-                    en.removePotionEffect(PotionEffectType.HARM);
-                    en.removePotionEffect(PotionEffectType.HUNGER);
-                    en.removePotionEffect(PotionEffectType.POISON);
-                    en.removePotionEffect(PotionEffectType.SLOW);
-                    en.removePotionEffect(PotionEffectType.SLOW_DIGGING);
-                    en.removePotionEffect(PotionEffectType.SLOW_FALLING);
-                    en.removePotionEffect(PotionEffectType.UNLUCK);
-                    en.removePotionEffect(PotionEffectType.WEAKNESS);
-                    en.removePotionEffect(PotionEffectType.WITHER);
-                    en.sendMessage(this.COLORED_TARGET_REMOVED_EFFECTS);
-                }
+                en.removePotionEffect(PotionEffectType.BAD_OMEN);
+                en.removePotionEffect(PotionEffectType.BLINDNESS);
+                en.removePotionEffect(PotionEffectType.CONFUSION);
+                en.removePotionEffect(PotionEffectType.HARM);
+                en.removePotionEffect(PotionEffectType.HUNGER);
+                en.removePotionEffect(PotionEffectType.POISON);
+                en.removePotionEffect(PotionEffectType.SLOW);
+                en.removePotionEffect(PotionEffectType.SLOW_DIGGING);
+                en.removePotionEffect(PotionEffectType.SLOW_FALLING);
+                en.removePotionEffect(PotionEffectType.UNLUCK);
+                en.removePotionEffect(PotionEffectType.WEAKNESS);
+                en.removePotionEffect(PotionEffectType.WITHER);
+                en.sendMessage(this.COLORED_TARGET_REMOVED_EFFECTS);
             }
         }
     }
