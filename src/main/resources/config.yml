@@ -13,5 +13,13 @@ potions:
     GREEN: 255
     BLUE: 255
 messages:
-  TARGET_REMOVED_EFFECTS: '&cYour negative potion effects have been removed!'
+  TARGET_REMOVED_EFFECTS: '&cYour potion effects have been removed!'
+  TARGET_PREVENT_EFFECT: '&cA potion effect was prevented from being applied to you!'
+  TARGET_REMOVED_BAD_EFFECTS: '&cYour negative potion effects have been removed!'
+  TARGET_PREVENT_BAD_EFFECT: '&cA negative potion effect was prevented from being applied to you!'
+  TIMER_MESSAGE: '&cYou are safe from all potion effects for the next %time% seconds!'
+  TIMER_BAD_MESSAGE: '&cYou are safe from all bad potion effects for the next %time% seconds!'
   RECEIVE_POTION: '&eYou receive in your inventory a Milk potion'
+options:
+  REMOVE_ONLY_DEBUFF: true
+  PROTECTION_TIMER: 15
