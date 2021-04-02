@@ -2,10 +2,14 @@ package es.minegold.milkpotion.listeners;
 
 import es.minegold.milkpotion.MilkPotion;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PotionSplashEvent;
+import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -43,6 +47,36 @@ public class MilkPotionListener implements Listener {
     private final String COLORED_TIMER_BAD_MESSAGE = translateAlternateColorCodes('&', Objects.requireNonNull(TIMER_BAD_MESSAGE));
 
     private final Integer TIMER = MilkPotion.get().getConfig().getInt("options.PROTECTION_TIMER");
+
+    @EventHandler
+    public void onPlayerShootOtherPlayer(ProjectileHitEvent e) {
+        Entity ent = e.getHitEntity();
+        if (ent != null) {
+            if (ent instanceof Player) {
+                if (MilkPotion.get().getConfig().getBoolean("options.REMOVE_ONLY_DEBUFF")) {
+                    Player entity = (Player) e.getHitEntity();
+                    if (e.getEntity().getType() == EntityType.ARROW) {
+                        Bukkit.getScheduler().runTaskLater(plugin, () -> {
+                            if (entity.hasPotionEffect(PotionEffectType.BAD_OMEN) || entity.hasPotionEffect(PotionEffectType.BLINDNESS) || entity.hasPotionEffect(PotionEffectType.CONFUSION) || entity.hasPotionEffect(PotionEffectType.HUNGER) || entity.hasPotionEffect(PotionEffectType.POISON) || entity.hasPotionEffect(PotionEffectType.SLOW) || entity.hasPotionEffect(PotionEffectType.SLOW_DIGGING) || entity.hasPotionEffect(PotionEffectType.SLOW_FALLING) || entity.hasPotionEffect(PotionEffectType.UNLUCK) || entity.hasPotionEffect(PotionEffectType.WEAKNESS) || entity.hasPotionEffect(PotionEffectType.WITHER)) {
+                                entity.removePotionEffect(PotionEffectType.BAD_OMEN);
+                                entity.removePotionEffect(PotionEffectType.BLINDNESS);
+                                entity.removePotionEffect(PotionEffectType.CONFUSION);
+                                entity.removePotionEffect(PotionEffectType.HUNGER);
+                                entity.removePotionEffect(PotionEffectType.POISON);
+                                entity.removePotionEffect(PotionEffectType.SLOW);
+                                entity.removePotionEffect(PotionEffectType.SLOW_DIGGING);
+                                entity.removePotionEffect(PotionEffectType.SLOW_FALLING);
+                                entity.removePotionEffect(PotionEffectType.UNLUCK);
+                                entity.removePotionEffect(PotionEffectType.WEAKNESS);
+                                entity.removePotionEffect(PotionEffectType.WITHER);
+                                entity.sendMessage(COLORED_TARGET_PREVENT_BAD_EFFECT);
+                            }
+                        }, 1);
+                    }
+                }
+            }
+        }
+    }
 
     @EventHandler
     public void onPlayerHitOtherPlayer(PotionSplashEvent e) {
