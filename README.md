@@ -1,5 +1,5 @@
 # MilkPotion
-Milk potion for Crusade Craft
+Milk potion but it has a few improvements
 
 # Frameworks used
 
